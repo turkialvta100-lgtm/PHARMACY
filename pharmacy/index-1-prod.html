@@ -1,0 +1,875 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy.products
+      <link rel="icon" type="image/x-icon" href="licensed-image.jpg">
+    </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+
+/*--------------------------- code-----------------------*/
+
+body {
+   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+   height: 100%;
+    margin: 0;          
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+
+.header {
+    background-color: rgb(255, 255, 255);
+    padding: 10px 0;
+    position: fixed; 
+    top: 0;          
+    width: 100%;     
+    z-index: 1000;  
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Bebas Neue", sans-serif;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-content img {
+    margin-top: 10px;
+    width: 200px; 
+    height: auto;
+    margin-left: 80px;
+    z-index: 1002;
+    position: relative;
+}
+
+
+.menu-toggle-input {
+    display: none;
+}
+
+
+.menu-toggle-label {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1003;
+    position: relative;
+}
+
+.menu-toggle-label span {
+    width: 28px;
+    height: 3px;
+    background-color: #3b4e45;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.nav-menu ul {
+    font-size: 25px;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    margin-right: 130px;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #3b4e45;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #5a7a68;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    
+    .header-content img {
+        width: 120px;
+        margin-left: 0;
+    }
+    
+   
+    .menu-toggle-label {
+        display: flex;
+    }
+    
+    
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: white;
+        transition: right 0.4s ease;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1002;
+        overflow-y: auto;
+    }
+    
+   
+    .menu-toggle-input:checked ~ .nav-menu {
+        right: 0;
+    }
+    
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(1) {
+        transform: rotate(45deg) translate(9px, 9px);
+    }
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(3) {
+        transform: rotate(-45deg) translate(9px, -9px);
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        margin: 80px 0 0 0;
+        gap: 0;
+        width: 100%;
+    }
+    
+    .nav-menu ul li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-menu ul li a {
+        display: block;
+        padding: 20px 30px;
+        font-size: 22px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .header-content img {
+        width: 100px;
+    }
+    
+    .nav-menu {
+        width: 80%;
+    }
+    
+    .nav-menu ul li a {
+        font-size: 20px;
+        padding: 18px 25px;
+    }
+}
+
+
+
+
+  .bar {
+  position: fixed;
+  top: 20px;
+  right: 60px;
+  max-height: calc(100vh - 80px);
+ /* background: white;*/
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+}
+
+
+.bar input[type="text"] {
+    position: fixed;
+  top: 70px;
+  right: 60px;
+  width: 380px;
+  max-height: calc(100vh - 80px);
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: 2px solid #000000;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.bar input[type="text"]:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+details {
+  cursor: pointer;
+}
+
+details summary {
+  font-weight: 600;
+  color: #000000;
+  padding: 10px 0;
+  list-style: none;
+  user-select: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] summary {
+  margin-bottom: 15px;
+}
+
+.det {
+  margin-left: 100px;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 900px) {   /*-------------------------------------------------------------*/  
+  .det {
+    margin-left: 20px;
+  }
+  
+}
+
+.det label {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #f8faf6 0%, #F1F3E0 100%);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+@media screen and (max-width: 900px) {  /*-------------------------------------------------------------*/
+  .det label {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+}
+
+.det label:hover {
+  background: #e5e7eb;
+}
+
+.det input[type="radio"] {
+  display: none;
+}
+
+.det input[type="radio"]:checked + label,
+.det label:has(input[type="radio"]:checked) {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+
+.add-to-cart {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+ 
+  max-height: calc(100vh - 80px);
+  border-radius: 16px;
+  
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+}
+
+@media (max-width: 768px) {
+
+
+  .add-to-cart {
+  position: fixed;
+  top: 20px;
+  right: 60px;
+ 
+  max-height: calc(100vh - 80px);
+  border-radius: 16px;
+  
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  }
+
+  .bar input[type="text"] {
+    position: fixed;
+  top: 70px;
+  right: 10px;
+  width: 350px;
+  max-height: calc(100vh - 80px);
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: 2px solid #000000;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+
+ .bar {
+  position: fixed;
+  top: 20px;
+  right: 100px;
+  max-height: calc(100vh - 80px);
+ /* background: white;*/
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+}
+  
+  
+}
+  
+  
+  /*---------------------------my code-----------------------*/
+
+  .tti{
+    margin-top: 150px;
+  }
+
+.products {
+ /*max-width: 1200px;*/
+ width: min(1200px, 90%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 900px) {   /*-------------------------------------------------------------*/
+  .products {
+    width: 70%;
+  }
+}
+.product {
+  /*background: white;*/
+  background-color: linear-gradient(135deg, #f8faf6 0%, #F1F3E0 100%) /* #ecf2f0*/;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #ffffff;
+  margin-bottom: 15px;
+}
+
+.product h3 {
+  font-size: 20px;
+  color: #1f2937;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.product p {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.product p:last-of-type {
+  font-size: 24px;
+  font-weight: 700;
+  color: #667eea;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.product button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.product button:active {
+  transform: scale(0.98);
+}
+
+
+/*-----------------------------------------------------*/
+
+
+.cart {
+  position: fixed;
+  top: 60px;
+  right: 10px;
+  width: 380px;
+  max-height: calc(100vh - 80px);
+  background: linear-gradient(135deg, #f8faf6 0%, #F1F3E0 100%);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.cart h3 {
+  font-size: 24px;
+  color: #1f2937;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.cart-item span:first-child {
+  font-weight: 500;
+  color: #374151;
+  flex: 1;
+}
+
+.cart-item input {
+  width: 50px;
+  padding: 6px;
+  text-align: center;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.cart-item input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.cart-item button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.cart-item button:hover {
+  background: #dc2626;
+}
+
+.total {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #e5e7eb;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: left;
+}
+
+.confirm-btn {
+  display: block;
+  width: 355px;
+  text-align: center;
+  padding: 14px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.confirm-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  /*body {
+    padding: 20px 10px;
+  }*/
+  
+  .cart {
+    position: static;
+    top: auto;
+    width: 100px;
+    right: 0;
+   
+    max-height: none;
+  }
+  
+  .products {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/*--------------------------- code-----------------------*/
+
+</style>
+<body>
+
+<header class="header">
+    <div class="header-content">
+        <img src="logo.png" >
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-input">
+        <label for="menu-toggle" class="menu-toggle-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index-1-prod.html">Shop</a></li>
+                <li><a href="ask.html">Ask</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+      <details class="bar">
+     <summary><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+           </svg></summary>
+       <input type="text" id="search" placeholder="Search product...">
+     </details>
+
+    <details class="add-to-cart" >
+    <summary><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
+</svg></summary>
+
+<div class="cart" id="cart">
+  <h3>Your Cart</h3>
+  <div id="cartItems"></div>
+  <div class="total" id="totalPrice">Total: $0</div>
+  <a href="#" class="confirm-btn" onclick="goToCheckout()" >Confirm Order</a>
+</div>
+</details>
+
+
+
+
+</header>
+
+<!------------------------------ search bar ---------------------->
+
+<h3 class="tti" style="font-size:50px ; text-align: center; font-family : Bebas Neue, sans-serif ;">Shop All Farmacy Products</h3>
+
+<div class="det">
+
+
+    <details class="det">
+    <summary> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
+  <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5"/>
+</svg> Filter by Category</summary>
+
+    <label><input type="radio" name="filter" value="all" checked> All</label>
+    <label><input type="radio" name="filter" value="head"> RAS</label>
+    <label><input type="radio" name="filter" value="cleaner"> CLEANER </label>
+    <label><input type="radio" name="filter" value="Vitamin"> Vitamin </label>
+    <label><input type="radio" name="filter" value="baby"> Baby </label>
+        <label><input type="radio" name="filter" value="pomade"> Pomade </label>
+
+    </details>
+</div>
+
+
+
+
+<!------------------------------ products ---------------------->
+
+</div>
+  <div class="products" id="productList">
+    <div class="product" data-type="cleaner" data-price="1000">
+        <img src="kk.webp" alt="">
+      <h3>ceria</h3>
+      <p>face cleaner</p>
+      <p>Price: 1000 DH</p>
+      <button>Quick add </button>
+    </div>
+
+    <div class="product" data-type="head" data-price="25">
+        <img src="doly.png" alt="">
+      <h3>Dolygripp</h3>
+      <p>Description pc</p>
+      <p>Price: 25 DH</p>
+      <button>Quick add</button>
+    </div>
+
+    <div class="product" data-type="cleaner" data-price="150">
+        <img src="mm.webp" alt="">
+      <h3>Product 3</h3>
+      <p>Description phone</p>
+      <p>Price: 150 DH</p>
+      <button>Quick add</button>
+    </div>
+
+    <div class="product" data-type="head" data-price="30">
+        <img src="gg.webp" alt="">
+      <h3>Dolyprane</h3>
+      <p>Description pc</p>
+      <p>Price: 30 DH</p>
+      <button>Quick add</button>
+    </div>
+
+      <div class="product" data-type="pomade" data-price="100">
+        <img src="bomadas.png" alt="">
+      <h3>pomada sfra</h3>
+      <p>Description phone</p>
+      <p>Price: 15 DH</p>
+      <button>Quick add </button>
+    </div>
+
+      <div class="product" data-type="Vitamin" data-price="90">
+        <img src="vc.png" alt="">
+      <h3>Vitamin C</h3>
+      <p>Description phone</p>
+      <p>Price: 90 DH</p>
+      <button>Quick add </button>
+    </div>
+
+      <div class="product" data-type="head" data-price="80">
+        <img src="pan.png" alt="">
+      <h3>Panadol</h3>
+      <p>Description phone</p>
+      <p>Price: 80 DH</p>
+      <button>Quick add </button>
+    </div>
+
+      <div class="product" data-type="Vitamin" data-price="100">
+        <img src="vo3.png" alt="">
+      <h3>Omega 3</h3>
+      <p>Description phone</p>
+      <p>Price: 100 DH</p>
+      <button>Quick add </button>
+    </div>
+
+      <div class="product" data-type="Vitamin" data-price="100">
+        <img src="magn.jpg" alt="">
+      <h3>Magnésium v b6</h3>
+      <p>Description phone</p>
+      <p>Price: 100 DH</p>
+      <button>Quick add </button>
+    </div>
+
+      <div class="product" data-type="baby" data-price="100">
+        <img src="babyspray-FR.png" alt="">
+      <h3>Physiomer</h3>
+      <p>Description phone</p>
+      <p>Price: 100 DH</p>
+      <button>Quick add </button>
+    </div>
+
+
+      <div class="product" data-type="pomade" data-price="100">
+        <img src="pomad.jpg" alt="">
+      <h3>Voltaren</h3>
+      <p>Description phone</p>
+      <p>Price: 100 DH</p>
+      <button>Quick add </button>
+    </div>
+
+
+      <div class="product" data-type="pomade" data-price="100">
+        <img src="flam.png" alt="">
+      <h3>Flammazine</h3>
+      <p>Description phone</p>
+      <p>Price: 100 DH</p>
+      <button>Quick add </button>
+    </div>
+
+
+      <div class="product" data-type="baby" data-price="100">
+        <img src="baby-1.png" alt="">
+      <h3>Bepanthen</h3>
+      <p>Description phone</p>
+      <p>Price: 100 DH</p>
+      <button>Quick add </button>
+    </div>
+
+
+      <div class="product" data-type="baby" data-price="100">
+        <img src="baby-2.png" alt="">
+      <h3>Babybio</h3>
+      <p>Description phone</p>
+      <p>Price: 100 DH</p>
+      <button>Quick add </button>
+    </div>
+
+
+  </div>
+</div>
+
+<!------------------------------ products -------------------------------------->
+
+<script>
+const products = document.querySelectorAll('.product');
+const cartItemsContainer = document.getElementById('cartItems');
+const searchInput = document.getElementById('search');
+const filterRadios = document.querySelectorAll('input[name="filter"]');
+let cart = [];
+
+function renderCart() {
+  cartItemsContainer.innerHTML = '';
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price * item.quantity;
+    const div = document.createElement('div');
+    div.classList.add('cart-item');
+    div.innerHTML = `
+      <span>${item.name} (${item.price} DH)</span>
+      <span>
+        <input type="number" min="1" value="${item.quantity}" data-index="${index}"> x 
+        <button data-index="${index}">Remove</button>
+      </span>`;
+    cartItemsContainer.appendChild(div);
+  });
+
+  document.getElementById('totalPrice').innerText = `Total: ${total} DH`;
+
+// Remove button
+  document.querySelectorAll('.cart-item button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = btn.dataset.index;
+      cart.splice(index, 1);
+      renderCart();
+    });
+  });
+
+// Quantity change
+  document.querySelectorAll('.cart-item input').forEach(input => {
+    input.addEventListener('input', () => {
+      const index = input.dataset.index;
+      cart[index].quantity = parseInt(input.value) || 1;
+      renderCart();
+    });
+  });
+}
+
+// Add to Cart buttons 
+products.forEach(product => {
+  const btn = product.querySelector('button');
+  btn.addEventListener('click', () => {
+    const name = product.querySelector('h3').innerText;
+    const price = parseFloat(product.dataset.price);
+    const existing = cart.find(p => p.name === name);
+    if (existing) existing.quantity++;
+    else cart.push({ name, price, quantity: 1 });
+    renderCart();
+
+// message kaywri blli tzed l cart  
+                btn.textContent = '✓ Added';
+                setTimeout(() => {
+                    btn.textContent = 'Add to Cart';
+                }, 1000);
+  });
+});
+
+// Search filter
+searchInput.addEventListener('input', () => {
+  const term = searchInput.value.toLowerCase();
+  products.forEach(product => {
+    const name = product.querySelector('h3').innerText.toLowerCase();
+    
+    if (name.includes(term)) {
+      product.style.display = '';  
+    } else {
+      product.style.display = 'none';
+    }
+  });
+});
+
+
+
+// Filter by category - improved version
+filterRadios.forEach(radio => {
+  radio.addEventListener('change', () => {
+    const value = radio.value.trim(); 
+
+    products.forEach(product => {
+      const type = product.dataset.type ? product.dataset.type.trim() : '';
+
+      if (value === 'all' || type === value) {
+        product.style.display = ''; 
+      } else {
+        product.style.display = 'none'; 
+      }
+    });
+  });
+});
+
+
+
+
+function goToCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      
+      // katsave l cart f local storage
+      localStorage.setItem('checkoutCart', JSON.stringify(cart));
+      
+      // katft7 l checkout page
+      window.open('checkout.html', '_blank');
+    }
+</script>
+
+
+
+</body>
+</html>

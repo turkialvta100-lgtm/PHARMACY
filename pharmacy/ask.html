@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <title>Pharmacy FAQ</title>
+    <style>
+/*-------------------------------------------head---------------------------------------*/
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    height: 100%;
+    margin: 0;          
+    padding: 0;
+    scroll-behavior: smooth;
+    background-color: #3b4e45;
+    background-color: #3b4e45;
+    color: #fff;
+}
+
+    .header {
+    background-color: rgb(255, 255, 255);
+    padding: 10px 0 ;      
+    width: 100%;     
+    z-index: 1000;  
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Bebas Neue", sans-serif;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-content img {
+    margin-top: 10px;
+    width: 200px; 
+    height: auto;
+    margin-left: 80px;
+    z-index: 1002;
+    position: relative;
+}
+
+
+.menu-toggle-input {
+    display: none;
+}
+
+.menu-toggle-label {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1003;
+    position: relative;
+}
+
+.menu-toggle-label span {
+    width: 28px;
+    height: 3px;
+    background-color: #3b4e45;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.nav-menu ul {
+    font-size: 25px;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    margin-right: 130px;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #3b4e45;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #5a7a68;
+}
+
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    
+    .header-content img {
+        width: 120px;
+        margin-left: 0;
+    }
+    
+    
+    .menu-toggle-label {
+        display: flex;
+    }
+    
+   
+    .nav-menu {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: white;
+        transition: right 0.4s ease;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1002;
+        overflow-y: auto;
+        display: none;
+    }
+    
+    
+    .menu-toggle-input:checked ~ .nav-menu {
+        right: 0;
+        display:grid;
+    }
+    
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(1) {
+        transform: rotate(45deg) translate(9px, 9px);
+    }
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(3) {
+        transform: rotate(-45deg) translate(9px, -9px);
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        margin: 80px 0 0 0;
+        gap: 0;
+        width: 100%;
+    }
+    
+    .nav-menu ul li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-menu ul li a {
+        display: block;
+        padding: 20px 30px;
+        font-size: 22px;
+    }
+}
+
+/*-------------------------------------------ask---------------------------------------*/
+
+
+.ask-item {
+    background-color: #444;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    margin: 0 20px 20px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ask-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+}
+
+.ask-question h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.p-icon {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.ask-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: #555;
+}
+
+.ask-answer-content {
+    padding: 15px 20px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+details[open] .ask-answer {
+    max-height: 500px; /* Adjust as needed */
+}
+
+details[open] .p-icon {
+    transform: rotate(45deg);
+}
+
+summary {
+    list-style: none;
+}
+
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-content">
+        <img src="logo.png" alt="amjad.logo">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-input">
+        <label for="menu-toggle" class="menu-toggle-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <nav class="nav-menu">
+            <ul>
+                <li><a  href="index.html">Home</a></li>
+                <li><a href="index-1-prod.html">Shop</a></li>
+                <li><a href="ask.html">Ask</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<details>
+<summary> 
+    <div class="ask-item">
+        <div class="ask-question">
+            <h3>Find answers to common questions about our pharmacy services?</h3>
+            <div class="p-icon">+</div>
+        </div>
+        <div class="ask-answer">
+            <div class="ask-answer-content">
+                        We're open Monday through Friday from 9:00 AM to 7:00 PM, Saturday from 9:00 AM to 5:00 PM, and Sunday from 10:00 AM to 4:00 PM. Holiday hours may vary.
+            </div>
+        </div>
+    </div>
+</summary>
+</details>
+
+<details>
+<summary> 
+    <div class="ask-item">
+        <div class="ask-question">
+            <h3>Do you accept insurance?</h3>
+            <div class="p-icon">+</div>
+        </div>
+        <div class="ask-answer">
+            <div class="ask-answer-content">
+                        Yes, we accept most major insurance plans. Please bring your insurance card with you, and our team will verify your coverage and process your prescription accordingly.
+            </div>
+        </div>
+    </div>
+</summary>
+</details>
+
+<details>
+<summary> 
+    <div class="ask-item">
+        <div class="ask-question">
+            <h3>Do you offer delivery services?</h3>
+            <div class="p-icon">+</div>
+        </div>
+        <div class="ask-answer">
+            <div class="ask-answer-content">
+            Yes, we offer free local delivery for prescriptions within a 5-mile radius. Same-day delivery is available for orders placed before 2:00 PM. Contact us to schedule your delivery.
+            </div>
+        </div>
+    </div>
+</summary>
+</details>
+
+
+<details>
+<summary> 
+    <div class="ask-item">
+        <div class="ask-question">
+            <h3>How long does delivery take?</h3>
+            <div class="p-icon">+</div>
+        </div>
+        <div class="ask-answer">
+            <div class="ask-answer-content">
+            Delivery usually takes 24–72 hours depending on your location.
+            </div>
+        </div>
+    </div>
+</summary>
+</details>
+
+<details>
+<summary> 
+    <div class="ask-item">
+        <div class="ask-question">
+            <h3>Do I need a prescription to buy medicines?</h3>
+            <div class="p-icon">+</div>
+        </div>
+        <div class="ask-answer">
+            <div class="ask-answer-content">
+            Some medicines require a valid prescription, while others are available over the counter. Always check the product description.           
+            </div>
+        </div>
+    </div>
+</summary>
+</details>
+</body>
+</html>

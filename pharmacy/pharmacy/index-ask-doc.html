@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <title>Contact Form</title>
+  <link rel="icon" type="image/x-icon" href="licensed-image.jpg">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #0c0c0c;
+      background-color: #3b4e45;
+      min-height: 100vh;
+    }
+
+    .layout_padding {
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+
+    .heading_container h2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      color: #ffffff;
+        font-size: 36px;
+    }
+
+    .contact_section .contact-form {
+      padding: 25px;
+      border-radius: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact_section .contact-form input[type="text"],
+    .contact_section .contact-form input[type="email"],
+    .contact_section .contact-form input[type="number"] {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      width: 100%;
+      margin: 12px 0;
+      padding: 10px 20px;
+      border: 2px solid rgba(0, 0, 0, 0.4);
+      border-radius: 50px;
+    }
+
+    .contact_section .contact-form input.input_message {
+      height: 155px;
+      border-radius: 20px;
+    }
+
+    .contact_section .contact-form input::placeholder {
+      color: #3d3c3c;
+    }
+
+    .contact_section .contact-form input[type="file"] {
+      margin: 20px 0;
+      padding: 1.5em;
+      border: 2px dashed #7b7b7b;
+      background-color: #ffffff;
+      transition: border-color .25s ease-in-out;
+      border-radius: 10px;
+      width: 100%;
+    }
+
+    .contact_section .contact-form input[type="file"]::file-selector-button {
+      padding: 1em 1.5em;
+      border-width: 0;
+      border-radius: 2em;
+      background-color: hsl(210 70% 30%);
+      color: hsl(210 40% 90%);
+      transition: all .25s ease-in-out;
+      cursor: pointer;
+      margin-right: 1em;
+    }
+
+    .contact_section .contact-form input[type="file"]:hover {
+      border-color: #565555;
+    }
+
+    .contact_section .contact-form input[type="file"]:hover::file-selector-button {
+      background-color: hsl(210 70% 40%);
+    }
+
+    .contact_section .contact-form button {
+      border: none;
+      outline: none;
+      padding: 10px 45px;
+      background-color: #582fd7;
+      color: #ffffff;
+      border-radius: 5px;
+      text-transform: uppercase;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact_section .contact-form button:hover {
+      background-color: #4520a8;
+    }
+
+    .success-message {
+      display: none;
+      padding: 15px;
+      margin-top: 20px;
+      background-color: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      color: #155724;
+    }
+
+
+            /*-------------------------------------------head---------------------------------------*/
+
+        .header {
+    background-color: rgb(255, 255, 255);
+    padding: 10px 0 ;
+   /* position: absolute;*/       
+    width: 100%;     
+    z-index: 1000;  
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Bebas Neue", sans-serif;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-content img {
+    margin-top: 10px;
+    width: 200px; 
+    height: auto;
+    margin-left: 80px;
+    z-index: 1002;
+    position: relative;
+}
+
+
+.menu-toggle-input {
+    display: none;
+}
+
+
+.menu-toggle-label {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1003;
+    position: relative;
+}
+
+.menu-toggle-label span {
+    width: 28px;
+    height: 3px;
+    background-color: #3b4e45;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.nav-menu ul {
+    font-size: 25px;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    margin-right: 130px;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #3b4e45;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #5a7a68;
+}
+
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    
+    .header-content img {
+        width: 120px;
+        margin-left: 0;
+    }
+    
+    
+    .menu-toggle-label {
+        display: flex;
+    }
+    
+   
+    .nav-menu {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: white;
+        transition: right 0.4s ease;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1002;
+        overflow-y: auto;
+    }
+    
+   
+    .menu-toggle-input:checked ~ .nav-menu {
+        right: 0;
+    }
+    
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(1) {
+        transform: rotate(45deg) translate(9px, 9px);
+    }
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle-input:checked + .menu-toggle-label span:nth-child(3) {
+        transform: rotate(-45deg) translate(9px, -9px);
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        margin: 80px 0 0 0;
+        gap: 0;
+        width: 100%;
+    }
+    
+    .nav-menu ul li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-menu ul li a {
+        display: block;
+        padding: 20px 30px;
+        font-size: 22px;
+    }
+}
+
+  </style>
+</head>
+
+<body>
+
+        <header class="header">
+    <div class="header-content">
+        <img src="logo.png" alt="amjad.logo">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-input">
+        <label for="menu-toggle" class="menu-toggle-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <nav class="nav-menu">
+            <ul>
+                <li><a  href="index.html">Home</a></li>
+                <li><a href="index-1-prod.html">Shop</a></li>
+                <li><a href="ask.html">Ask</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>Ask a Doctor</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-9 mx-auto">
+          <div class="contact-form">
+            <form id="contactForm">
+              <div>
+                <input type="text" id="fullName" placeholder="Full Name" required>
+              </div>
+              <div>
+                <input type="number" id="phoneNumber" placeholder="Phone Number" required>
+              </div>
+              <div>
+                <input type="email" id="emailAddress" placeholder="Email Address" required>
+              </div>
+              <div>
+                <input type="text" id="message" placeholder="Message" required class="input_message">
+              </div>
+              <div>
+                <input type="file" id="fileUpload" accept="image/*,.pdf,.doc,.docx">
+              </div>
+              <div class="btn">
+                <button type="submit" class="btn">Send</button>
+              </div>
+              <div class="success-message" id="successMessage">
+                Thank you! Your message has been sent successfully.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show success message
+      document.getElementById('successMessage').style.display = 'block';
+      
+      // Reset form after 2 seconds
+      setTimeout(() => {
+        this.reset();
+        document.getElementById('successMessage').style.display = 'none';
+      }, 2000);
+    }); 
+</script>
+
+</body>
+</html>

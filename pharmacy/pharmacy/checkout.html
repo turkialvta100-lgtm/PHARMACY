@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pharmacy.Checkout</title>
+  <link rel="icon" type="image/x-icon" href="licensed-image.jpg">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background:  #3b4e45;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .checkout-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #f8faf6 0%, #F1F3E0 100%);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #1f2937;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #374151;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .order-summary {
+      background: linear-gradient(135deg, #f4faed 0%, #f1f4d9 100%);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-details {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: #1f2937;
+      font-size: 16px;
+    }
+
+    .item-quantity {
+      color: #6b7280;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .item-price {
+      font-weight: 600;
+      color: #4764e7;
+      font-size: 16px;
+    }
+
+    .total-section {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 2px solid #d1d5db;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-label {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .total-amount {
+      font-size: 28px;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    input {
+      background: linear-gradient(135deg, #f8faf6 0%, #F1F3E0 100%);
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #b9bdc6;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .done-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #009865 0%, #3b4e45 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .done-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+
+    .done-btn:active {
+      transform: scale(0.98);
+    }
+
+    .done-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .success-message {
+      display: none;
+      background: #d1fae5;
+      border: 2px solid #10b981;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .success-message.show {
+      display: block;
+      animation: slideIn 0.5s ease;
+    }
+
+    .success-message h3 {
+      color: #065f46;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .success-message p {
+      color: #047857;
+      font-size: 16px;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .error-message {
+      background: #fee2e2;
+      border: 2px solid #ef4444;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+      color: #991b1b;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-container {
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .total-amount {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="checkout-container">
+    <h1> Checkout</h1>
+
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div id="orderItems"></div>
+      <div class="total-section">
+        <span class="total-label">Total:</span>
+        <span class="total-amount" id="totalAmount">0.00 DH</span>
+      </div>
+    </div>
+
+    <h2>Delivery Information</h2>
+    <form id="checkoutForm">
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+      </div>
+
+      <div class="form-group">
+        <label for="city">City *</label>
+        <input type="text" id="city" name="city" required placeholder="Enter your city">
+      </div>
+
+      <button type="submit" class="done-btn" id="submitBtn">Complete Order</button>
+    </form>
+
+    <div class="error-message" id="errorMessage"></div>
+    <div class="success-message" id="successMessage">
+      <h3>✅ Order Confirmed!</h3>
+      <p>Your order has been placed successfully. You will receive a confirmation email shortly.</p>
+    </div>
+  </div>
+  
+  <script>
+    let cart = [];
+    let total = 0;
+
+    // katjib l cart mn local storage
+    function loadCart() {
+      const cartData = localStorage.getItem('checkoutCart');
+      if (cartData) {
+        cart = JSON.parse(cartData);
+        displayOrder();
+      } else {
+        document.getElementById('orderItems').innerHTML = '<p style="text-align:center;color:#9ca3af;">No items in cart</p>';
+      }
+    }
+
+    // change l affichage dyal order
+    function displayOrder() {
+      const orderItems = document.getElementById('orderItems');
+      const totalAmount = document.getElementById('totalAmount');
+      
+      orderItems.innerHTML = '';
+      total = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        const orderItem = document.createElement('div');
+        orderItem.className = 'order-item';
+        orderItem.innerHTML = `
+          <div class="item-details">
+            <div class="item-name">${item.name}</div>
+            <div class="item-quantity">Quantity: ${item.quantity} × ${item.price.toFixed(2)} DH</div>
+          </div>
+          <div class="item-price">${itemTotal.toFixed(2)} DH</div>
+        `;
+        orderItems.appendChild(orderItem);
+      });
+      
+      totalAmount.textContent = `${total.toFixed(2)} DH`;
+    }
+
+    // mli katclicka 3la l button
+        document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // katwri l user blli order tconfirmat
+        document.getElementById('successMessage').classList.add('show');
+
+        // trj3k l page li jiti mnha
+        setTimeout(() => {
+          window.close();
+        }, 3000);
+      });
+
+    loadCart();
+  </script> 
+</body>
+</html>
